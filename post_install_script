@@ -4,21 +4,43 @@
 sudo apt update
 sudo apt upgrade -y
 
-sudo apt install redis-server
-
+sudo apt install redis-server -y
 sudo systemctl enable redis-server.service
 
-sudo apt install nmap
+sudo apt install nmap -y
 
-sudo apt install pip3
+#WPScan
+sudo apt-get install libcurl4-openssl-dev libxml2 libxml2-dev libxslt1-dev ruby-dev build-essential libgmp-dev zlib1g-dev -y
+git clone https://github.com/wpscanteam/wpscan.git
+cd wpscan
+sudo gem install bundler && bundle install --without test development -y
+cd ~
 
-sudo mkdir /app
+#Nikto
+wget https://github.com/sullo/nikto/archive/master.zip
+unzip master.zip
+cd nikto-master/program
+perl nikto.pl -y
+cd ~
 
-cd /app
+#WhatWeb
+sudo apt-get install ruby ruby-dev libopenssl-ruby -y
+sudo gem install bundler
+bundle install
+bundle update
+sudo gem install bson
+sudo gem install bson_ext
+sudo gem install mongo
 
+#Install pip
+sudo apt install python3-pip -y
+
+#sslyze
+pip3 install --upgrade setuptools
+pip3 install --upgrade sslyze
+
+#Install scanner app and dependencies
 git clone https://gitlab.com/joshsisto/scanner_app
-
-cd /app/scanner_app
-
+cd /scanner_app
 pip3 install -r requirements.txt
 
