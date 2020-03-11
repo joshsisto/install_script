@@ -4,6 +4,10 @@
 sudo apt update
 sudo apt upgrade -y
 
+sudo apt install redis-server
+
+sudo systemctl enable redis-server.service
+
 sudo apt install nmap
 
 sudo apt install pip3
